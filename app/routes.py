@@ -206,7 +206,7 @@ def about():
     return render_template("about.html")
 
 @app.route('/')
-@app.route('/explore')
+@app.route('/explore', methods=['GET'])
 def explore():
     return render_template("explore.html")
 
@@ -245,6 +245,70 @@ def brd():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+@app.route('/aos')
+def aos():
+    return render_template('aos.js')
+
+@app.route('/jquery_easing_min')
+def jquery_easing_min():
+    return render_template('jquery.easing.min.js')
+
+@app.route('/bootstrap_bundle')
+def bootstrap_bundle():
+    return render_template('bootstrap.bundle.js')
+
+@app.route('/bootstrap_bundle_min')
+def bootstrap_bundle_min():
+    return render_template('bootstrap.bundle.min.js')
+
+@app.route('/bootstrap')
+def bootstrap():
+    return render_template('bootstrap.js')
+
+@app.route('/bootstrap_min')
+def bootstrap_min():
+    return render_template('bootstrap.min.js')
+
+@app.route('/counterup_min')
+def counterup_min():
+    return render_template('counterup.min.js')
+
+@app.route('/isotope_pkgd')
+def isotope_pkgd():
+    return render_template('isotope.pkgd.js')
+
+@app.route('/isotope_pkgd_min')
+def isotope_pkgd_min():
+    return render_template('isotope.pkgd.min.js')
+
+@app.route('/jquery_waypoints_min')
+def jquery_waypoints_min():
+    return render_template('jquery.waypoints.min.js')
+
+@app.route('/main2')
+def main2():
+    return render_template('main2.js')
+
+@app.route('/owl_carousel')
+def owl_carousel():
+    return render_template('owl.carousel.js')
+
+@app.route('/owl_carousel_min')
+def owl_carousel_min():
+    return render_template('owl.carousel.min.js')
+
+@app.route('/validate')
+def validate():
+    return render_template('validate.js')
+
+@app.route('/venobox')
+def venobox():
+    return render_template('venobox.js')
+
+@app.route('/venobox_min')
+def venobox_min():
+    return render_template('venobox.min.js')
 
 @app.route('/terms')
 def terms():
