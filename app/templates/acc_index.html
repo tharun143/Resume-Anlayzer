@@ -7,8 +7,10 @@
 
 	<div class="container">
 		<h1>Welcome, {{ current_user.username }}!</h1>
+        <br>
+        <a href="{{ url_for('comprequire') }}" class="btn btn-success">Upload Requiremnets</a>
 		<br>
-		<h1>Overview of all transactions</h1> 
+		<h1>Contents of Applicants resumes</h1> 
 		<br>
 		<input class="form-control mb-4" id="tableSearch" type="text" placeholder="Type something to search list items">
         <br>

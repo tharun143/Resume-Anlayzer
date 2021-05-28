@@ -50,7 +50,16 @@ class Transaction(db.Model):
     document = db.relationship('Document',backref='document_of',lazy='dynamic')
 
     def __repr__(self):
-        return '<Transaction {}>'.format(self.tr_id)        
+        return '<Transaction {}>'.format(self.tr_id)
+
+class Company(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    cgpa = db.Column(db.Numeric(2,1))
+    skills = db.Column(db.String(140))
+    backlogs = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<Company> {}>'.format(self.cgpa)
 
 class Comment(db.Model):
     id = db.Column(db.Integer,primary_key=True)

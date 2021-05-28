@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for,  request
 from app import app, db
 from app.get_returns import tax
-from app.forms import LoginForm, RegistrationForm, EditProfileForm, AddTransactionForm, AddCommentForm, EditTransactionForm, UpdateStatusForm
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, AddTransactionForm, AddCommentForm, EditTransactionForm, UpdateStatusForm, CompRequireForm
 from flask_login import logout_user, current_user, login_user, login_required
 from app.models import User, Transaction, Comment, Document
 from werkzeug.urls import url_parse
@@ -114,7 +114,20 @@ def add_transaction():
             db.session.commit()
         flash('You have sucessfully added the transaction!')
         return redirect(url_for('index'))
-    return render_template('transaction.html',title='New Transaction',form=form)    
+    return render_template('transaction.html',title='New Transaction',form=form) 
+
+@app.route('/comprequire',methods=['GET','POST'])
+@login_required
+def comprequire():
+    form = CompRequireForm()
+    if form.validate_on_submit():
+        comprequire = Company(cgpa=form.cgpa.data, skills=form.skills.data, backlogs=form.backlogs.data)
+        comprequire.user_id = current_user.id
+        db.session.add(comprequire)
+        db.session.commit()   
+        flash('You have sucessfully entered the company requirements!')
+        return redirect(url_for('acc_index'))
+    return render_template('comprequire.html',title='Company requirements',form=form)    
 
 @app.route('/edit_transaction/<trans_id>',methods=['GET','POST'])
 @login_required

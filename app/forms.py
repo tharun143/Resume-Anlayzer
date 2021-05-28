@@ -14,7 +14,7 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(),Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField('Repeat Password', validators=[DataRequired(),EqualTo('password')])
-    job = RadioField('Job type',choices=[('Acc','Accountant'),('Enterpu','Enterpurner')],validators=[DataRequired()])
+    job = RadioField('Job type',choices=[('Acc','Company'),('Enterpu','Applicant')],validators=[DataRequired()])
     submit = SubmitField('Register')
 
     def validate_username(self, username):
@@ -53,7 +53,7 @@ class AddCommentForm(FlaskForm):
 class EditTransactionForm(FlaskForm):
     tr_id = IntegerField('Transaction ID', validators=[DataRequired()])
     date = StringField('Date of Transaction', validators=[DataRequired()])
-    description = TextAreaField('Description', validators=[Length(min=0,max=140)])
+    description = TextAreaField('Description', validators=[Length(min=0,max=140),DataRequired()])
     tr_type = StringField('Type of Transaction', validators=[DataRequired()])
     amount = IntegerField('Amount', validators=[DataRequired()])
     file = FileField()
@@ -62,3 +62,9 @@ class EditTransactionForm(FlaskForm):
 class UpdateStatusForm(FlaskForm):
     status = RadioField('Status',choices=[('True','Verified'),('False','Pending')],validators=[DataRequired()])
     submit = SubmitField('Update')
+
+class CompRequireForm(FlaskForm):
+    cgpa = IntegerField('Enter CGPA (Reuired CGPA and above)', validators=[DataRequired()])
+    skills = TextAreaField('Enter Skills (Add comma while entering multiple skills)', validators=[Length(min=0,max=140), DataRequired()])
+    backlogs = IntegerField('Count of Backlogs', validators=[DataRequired()])
+    submit = SubmitField('Submit Requirements')
